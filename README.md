@@ -9,17 +9,15 @@ To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
+  * Install Node.js dependencies with `cd assets && npm install && cd -`
   * Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
 
 ## Emails
 
 To test your email messages on development environment you can visit
 [`localhost:4000/sent_emails`](http://localhost:4000/sent_emails)
-
 
 ## Deployment
 
@@ -27,13 +25,10 @@ It will be automatically deployed to production when pushed to master.
 
 ### Create a new user
 
-You have to open the console running:
+After the first deployment, go to the root directory and create a user able to access the admin panel:
+
 ```bash
-iex -S mix
-```
-And then create the user:
-```elixir
-ConstrutoraLcHiert.Account.Users.create_user(%{username: "admin", password: "admin", master: true})
+mix run -e "ConstrutoraLcHiert.Account.Users.create_user(%{username: \"admin\", password: \"admin\", master: true})"
 ```
 
 #### Environment variables

@@ -55,7 +55,7 @@ defmodule ConstrutoraLcHiertWeb.Helpers.PaginatorHelper do
 
   defp build_params(conn, page) do
     conn.query_params
-    |> Map.put(:page, page)
+    |> Map.put("page", page)
     |> URI.encode_query()
   end
 end

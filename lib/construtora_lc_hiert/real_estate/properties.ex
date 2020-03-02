@@ -91,7 +91,7 @@ defmodule ConstrutoraLcHiert.RealEstate.Properties do
   def list_paged_properties(params) do
     Property
     |> where([p], is_nil(p.deleted_at))
-    |> order_by([p], desc: p.updated_at)
+    |> order_by([p], desc: p.updated_at, desc: p.id)
     |> preload([:images, :amenities])
     |> Filters.apply(params)
     |> Paginator.paginate(params[:page])
@@ -100,7 +100,7 @@ defmodule ConstrutoraLcHiert.RealEstate.Properties do
   def list_properties() do
     Property
     |> where([p], is_nil(p.deleted_at))
-    |> order_by([p], desc: p.updated_at)
+    |> order_by([p], desc: p.updated_at, desc: p.id)
     |> join(:left, [p], a in assoc(p, :amenities), as: :amenities)
     |> join(:left, [p], i in assoc(p, :images), as: :images)
     |> preload([amenities: a, images: i], amenities: a, images: i)
@@ -110,7 +110,7 @@ defmodule ConstrutoraLcHiert.RealEstate.Properties do
   def list_properties(params) do
     Property
     |> where([p], is_nil(p.deleted_at))
-    |> order_by([p], desc: p.updated_at)
+    |> order_by([p], desc: p.updated_at, desc: p.id)
     |> preload([:images, :amenities])
     |> Filters.apply(params)
     |> Repo.all()
@@ -119,7 +119,7 @@ defmodule ConstrutoraLcHiert.RealEstate.Properties do
   def list_properties(params, limit) do
     Property
     |> where([p], is_nil(p.deleted_at))
-    |> order_by([p], desc: p.updated_at)
+    |> order_by([p], desc: p.updated_at, desc: p.id)
     |> preload([:images, :amenities])
     |> limit(^limit)
     |> Filters.apply(params)
